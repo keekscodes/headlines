@@ -1,0 +1,15 @@
+*,
+ ::after,
+ ::before {
+    box-sizing: border-box;
+}
+
+#nav-menu-container {
+    background-color: #00c7ff;
+}
+
+#site-name {
+    color: #fff;
+    font-family: 'Comfortaa', cursive;
+    text-transform: uppercase;
+}
