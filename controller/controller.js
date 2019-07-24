@@ -25,7 +25,7 @@ router.get('/scrape', function(req, res) {
         var $ = cheerio.load(html);
         var titlesArray = [];
         // Now, we grab every article
-        $('.ccEntry.h2').each(function(i, element) {
+        $('.ccEntry').each(function(i, element) {
             // Save an empty result object
             var result = {};
 
@@ -62,13 +62,13 @@ router.get('/scrape', function(req, res) {
             });
         }
         // Log that scrape is working, just the content was missing parts
-        else{
+        else {
           console.log('Article already exists.')
         }
 
           }
           // Log that scrape is working, just the content was missing parts
-          else{
+          else {
             console.log('Not saved to DB, missing data')
           }
         });
@@ -137,7 +137,7 @@ router.get('/readArticle/:id', function(req, res){
           var $ = cheerio.load(html);
 
           $('.l-col__main').each(function(i, element){
-            hbsObj.body = $(this).children('.c-entry-content').children('p').text();
+            hbsObj.body = $(this).children('.ccEntry').children('p').text();
             //send article body and comments to article.handlbars through hbObj
             res.render('article', hbsObj);
             //prevents loop through so it doesn't return an empty hbsObj.body
