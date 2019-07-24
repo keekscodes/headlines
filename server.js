@@ -29,15 +29,6 @@ app.set('view engine', 'handlebars');
 var databaseUrl = "newsDB";
 var collections = ["articles"];
 
-var Schema = mongoose.Schema;
-var ObjectId = mongoose.ObjectId;
-
-var articles = new Schema({
-  Author: ObjectId,
-  Headline: String,
-  Summary: String,
-  URL: String
-})
 
 // Routes
 app.get("/", function(req, res) {
