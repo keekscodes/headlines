@@ -268,10 +268,12 @@ app.get('/scrape', function(req, res) {
           db.Article.create(result)
             .then(function(dbArticle) {
 
+              res.json(dbArticle);
               console.log(dbArticle);
             })
             .catch(function(err) {
               // If an error occurred, log it
+              res.json(err);
               console.log(err);
             });
         });
@@ -315,7 +317,7 @@ app.get('/scrape', function(req, res) {
 // });
 
 //this will grab every article an populate the DOM
-app.get('/articles', function(req, res) {
+app.get('/api/articles', function(req, res) {
 //allows newer articles to be on top
 db.Article.find({}).sort({_id: -1})
     //send to handlebars

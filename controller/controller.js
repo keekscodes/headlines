@@ -8,13 +8,16 @@ var request = require('request');
 var cheerio = require('cheerio');
 
 //Require models
-var Comment = require('../models/comment');
-var Article = require('../models/article');
+// var Comment = require('../models/comment');
+// var Article = require('../models/article');
+
+var db = require('../models/index')
 
 //index
-router.get('/', function(req, res) {
-    res.redirect('/articles');
-});
+// router.get('/', function(req, res) {
+//     res.redirect('index');
+// });
+
 
 
 // A GET request to scrape the PetMD website
@@ -23,11 +26,14 @@ router.get('/scrape', function(req, res) {
     request('https://www.petmd.com/dog/centers/care/content/health/all', function(error, response, html) {
         // Then, we load that into cheerio and save it to $ for a shorthand selector
         var $ = cheerio.load(html);
+
         var titlesArray = [];
-        // Now, we grab every article
+
+        
         $('.ccEntry').each(function(i, element) {
-            // Save an empty result object
-            var result = {};
+          
+          let title = $(element).find('h2').text();
+        console.log(title);
 
             // Add the text and href of every link, and save them as properties of the result object
             result.title = $(this).children('a').text();

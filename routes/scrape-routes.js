@@ -5,12 +5,18 @@ var path = require('path');
 var request = require('request');
 var cheerio = require('cheerio');
 
-var Comment = require('../models/comment');
-var Article = require('../models/article');
+var Comment = require('../models/Note');
+var Article = require('../models/Article');
 
 app.get('/', function(req, res) {
-    res.redirect('/articles');
+    res.redirect('index');
 });
+
+// app.get('/', function(req, res) {
+//     res.render('index', {});
+//     // res.redirect('/articles');
+//   });
+  
 
 app.get("/scrape", function (req, res) {
   // First, we grab the body of the html with axios
@@ -22,6 +28,8 @@ app.get("/scrape", function (req, res) {
         // Save an empty result object
         var result = {};
 
+        let title = $(element).find('h2');
+      console.log(title);
         // Add the text and the information, and save them as properties of the result object
         // result.title = $(this)
         //     .find("h2")
@@ -64,3 +72,5 @@ app.get("/scrape", function (req, res) {
 
     });
 });
+
+module.exports = app;
